@@ -64,7 +64,7 @@ gulp.task('sass', () => {
 });
 
 gulp.task('watch', () => {
-	gulp.watch(paths.scripts, ['scripts']);
+	gulp.watch(paths.scripts, ['discoverer, scripts']);
 	gulp.watch(paths.sass, ['sass']);
 });
 gulp.task('default', ['clean', 'discoverer', 'scripts', 'sass', 'watch']);
