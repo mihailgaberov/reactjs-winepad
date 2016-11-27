@@ -6,22 +6,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Logo from './components/Logo';
-import Excel from './components/Excel';
+import Whinepad from './components/Whinepad';
+import schema from './schema';
 
-let headers = localStorage.getItem('headers');
-let data = localStorage.getItem('data');
+let data = JSON.parse(localStorage.getItem('data'));
 
-if (!headers) {
-	headers = ['Title', 'Year', 'Rating', 'Comments'];
-	data = [['Test Movie', '2015', '3', 'meh']];
+// Default example data, read from the schema
+if (!data) {
+	data = {};
+	schema.forEach(item => data[item.id] = item.sample);
+	data = [data];
 }
 
 ReactDOM.render(
 	<div>
-		<h1>
-			<Logo /> Welcome to the app!
-		</h1>
-		<Excel headers={headers} initialData={data} />
+		<div className="app-header">
+			<Logo/> Welcome to Winepad!
+		</div>
+		<Whinepad schema={schema} initialData={data} />
 	</div>,
 	document.getElementById('pad')
 );
