@@ -33,6 +33,23 @@ function compile() {
 		.pipe(gulp.dest(paths.build));
 }
 
+function compileDiscoverer() {
+	const bundler = watchify(browserify('./src/discoverer.js', {debug: true})
+		.transform('babelify', {presets: ['react', 'es2015']}));
+
+	bundler.bundle()
+		.on('error', (err) => {
+			console.error(err);
+			this.emit('end');
+		})
+		.pipe(source('discoverer-bundle.js'))
+		.pipe(buffer())
+		.pipe(sourcemaps.init({loadMaps: true}))
+		.pipe(sourcemaps.write('./'))
+		.pipe(gulp.dest(paths.build));
+}
+
+gulp.task('discoverer', () => compileDiscoverer());
 gulp.task('scripts', () => compile());
 
 gulp.task('clean', () => del(['build']));
@@ -50,4 +67,4 @@ gulp.task('watch', () => {
 	gulp.watch(paths.scripts, ['scripts']);
 	gulp.watch(paths.sass, ['sass']);
 });
-gulp.task('default', ['clean', 'scripts', 'sass', 'watch']);
+gulp.task('default', ['clean', 'discoverer', 'scripts', 'sass', 'watch']);
