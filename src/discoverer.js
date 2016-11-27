@@ -10,6 +10,7 @@ import Logo from './components/Logo';
 import Suggest from './components/Suggest';
 import Rating from './components/Rating';
 import FormInput from './components/FormInput';
+import Form from './components/Form';
 
 ReactDOM.render(
 	<div style={ {padding: '20px'} }>
@@ -64,6 +65,23 @@ ReactDOM.render(
 			<td><FormInput type="text" /></td>
 		</tr>
 		</tbody></table>
+
+		<h2>Form</h2>
+		<Form
+			fields={[
+				{label: 'Rating', type: 'rating', id: 'rateme'},
+				{label: 'Greetings', id: 'freetext'},
+			]}
+			initialData={{rateme: 4, freetext: 'Hello'}} />
+
+		<h2>Form readonly</h2>
+		<Form
+			fields={[
+				{label: 'Rating', type: 'rating', id: 'rateme'},
+				{label: 'Greetings', id: 'freetext'},
+			]}
+			initialData={{rateme: 4, freetext: 'Hello'}}
+			readonly={true} />
 	</div>,
 	document.getElementById('pad')
 );
