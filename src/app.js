@@ -21,9 +21,11 @@ if (!data) {
 ReactDOM.render(
 	<div>
 		<div className="app-header">
-			<Logo/> Welcome to Winepad!
+			<Logo/> Welcome to Whinepad!
 		</div>
-		<Whinepad schema={schema} initialData={data} />
+		<Whinepad
+			schema={schema}
+			initialData={data} />
 	</div>,
 	document.getElementById('pad')
 );
