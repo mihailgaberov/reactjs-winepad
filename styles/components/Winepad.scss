@@ -1,0 +1,23 @@
+.Whinepad {
+  .WhinepadToolbar {
+    margin: 40px;
+  }
+
+  .WhinepadToolbarAdd {
+    float: left;
+  }
+
+  .WhinepadToolbarSearch {
+    float: right;
+  }
+
+  .WhinepadToolbarAddButton {
+    font-size: 32px;
+  }
+
+  .WhinepadDatagrid {
+    clear: both;
+    margin: 40px;
+    padding-top: 20px;
+  }
+}
