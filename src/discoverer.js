@@ -11,6 +11,8 @@ import Suggest from './components/Suggest';
 import Rating from './components/Rating';
 import FormInput from './components/FormInput';
 import Form from './components/Form';
+import Actions from './components/Actions';
+import Dialog from './components/Dialog';
 
 ReactDOM.render(
 	<div style={ {padding: '20px'} }>
@@ -100,9 +102,6 @@ ReactDOM.render(
 			onAction={type => alert(type)}>
 			Anything goes here, see: <Button>A button</Button>
 		</Dialog></div>
-
-
-		{/* more components go here... */}
 	</div>,
 	document.getElementById('pad')
 );
