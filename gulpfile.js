@@ -14,7 +14,8 @@ const paths = {
 	html: 'index.html',
 	scripts: './src/**/*.js',
 	sass: './styles/**/*.scss',
-	build: './build'
+	build: './build',
+	src: './src'
 };
 
 function compile() {
@@ -64,7 +65,8 @@ gulp.task('sass', () => {
 });
 
 gulp.task('watch', () => {
-	gulp.watch(paths.scripts, ['discoverer, scripts']);
+	gulp.watch(paths.src, ['discoverer']);
+	gulp.watch(paths.scripts, ['scripts']);
 	gulp.watch(paths.sass, ['sass']);
 });
 gulp.task('default', ['clean', 'discoverer', 'scripts', 'sass', 'watch']);

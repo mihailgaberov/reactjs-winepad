@@ -82,6 +82,27 @@ ReactDOM.render(
 			]}
 			initialData={{rateme: 4, freetext: 'Hello'}}
 			readonly={true} />
+
+		<h2>Actions</h2>
+		<div><Actions onAction={type => alert(type)}/></div>
+
+		<h2>Dialog</h2>
+		<div><Dialog
+			header="Out of the box example"
+			onAction={type => alert(type)}>
+			Hello, dialog!
+		</Dialog></div>
+		<p>&nbsp;</p>
+		<div><Dialog
+			header="No cancel, custom button"
+			hasCancel={false}
+			confirmLabel="Whatever"
+			onAction={type => alert(type)}>
+			Anything goes here, see: <Button>A button</Button>
+		</Dialog></div>
+
+
+		{/* more components go here... */}
 	</div>,
 	document.getElementById('pad')
 );
