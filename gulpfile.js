@@ -20,7 +20,7 @@ const paths = {
 
 function compile() {
 	const bundler = watchify(browserify('./src/app.js', {debug: true})
-					.transform('babelify', {presets: ['react', 'es2015']}));
+					.transform('babelify', {presets: ['react', 'es2015', 'stage-0']}));
 
 	bundler.bundle()
 		.on('error', (err) => {
@@ -36,7 +36,7 @@ function compile() {
 
 function compileDiscoverer() {
 	const bundler = watchify(browserify('./src/discoverer.js', {debug: true})
-		.transform('babelify', {presets: ['react', 'es2015']}));
+		.transform('babelify', {presets: ['react', 'es2015', 'stage-0']}));
 
 	bundler.bundle()
 		.on('error', (err) => {

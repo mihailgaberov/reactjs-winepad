@@ -3,15 +3,36 @@
  */
 'use strict';
 
+/* @flow */
+
+import CRUDStore from '../flux/CRUDStore';
 import FormInput from './FormInput';
 import Rating from './Rating';
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+
+import type {FormInputField, FormInputFieldValue} from './FormInput';
+
+type Props = {
+	readonly?: boolean,
+	recordId: ?number,
+};
 
 class Form extends Component {
 
-	getData() {
-		let data = {};
-		this.props.fields.forEach(field =>
+	fields: Array<Object>;
+	initialData: ?Object;
+
+	constructor(props: Props) {
+		super(props);
+		this.fields = CRUDStore.getSchema();
+		if ('recordId' in this.props) {
+			this.initialData = CRUDStore.getRecord(this.props.recordId);
+		}
+	}
+
+	getData(): Object {
+		let data: Object = {};
+		this.fields.forEach((field: FormInputField) =>
 			data[field.id] = this.refs[field.id].getValue()
 		);
 		return data;
@@ -19,8 +40,8 @@ class Form extends Component {
 
 	render() {
 		return (
-			<form className="Form">{this.props.fields.map(field => {
-				const prefilled = this.props.initialData && this.props.initialData[field.id];
+			<form className="Form">{this.fields.map((field: FormInputField) => {
+				const prefilled: FormInputFieldValue = (this.initialData && this.initialData[field.id]) || '';
 				if (!this.props.readonly) {
 					return (
 						<div className="FormRow" key={field.id}>
@@ -46,16 +67,5 @@ class Form extends Component {
 		);
 	}
 }
-
-Form.propTypes = {
-	fields: PropTypes.arrayOf(PropTypes.shape({
-		id: PropTypes.string.isRequired,
-		label: PropTypes.string.isRequired,
-		type: PropTypes.string,
-		options: PropTypes.arrayOf(PropTypes.string),
-	})).isRequired,
-	initialData: PropTypes.object,
-	readonly: PropTypes.bool,
-};
 
 export default Form

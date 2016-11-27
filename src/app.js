@@ -3,29 +3,21 @@
  */
 'use strict';
 
+import CRUDStore from './flux/CRUDStore';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Logo from './components/Logo';
 import Whinepad from './components/Whinepad';
 import schema from './schema';
 
-let data = JSON.parse(localStorage.getItem('data'));
-
-// Default example data, read from the schema
-if (!data) {
-	data = {};
-	schema.forEach(item => data[item.id] = item.sample);
-	data = [data];
-}
+CRUDStore.init(schema);
 
 ReactDOM.render(
 	<div>
 		<div className="app-header">
 			<Logo/> Welcome to Whinepad!
 		</div>
-		<Whinepad
-			schema={schema}
-			initialData={data} />
+		<Whinepad />
 	</div>,
 	document.getElementById('pad')
 );

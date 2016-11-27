@@ -2,6 +2,7 @@
  * Created by Mihail on 11/27/2016.
  */
 'use strict';
+/* @flow */
 
 import classNames from 'classnames';
 import React, {PropTypes} from 'react';
