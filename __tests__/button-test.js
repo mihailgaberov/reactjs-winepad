@@ -7,7 +7,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 
-const Button = require('../source/components/Button').default;
+const Button = require('../src/components/Button').default;
 
 describe('Render Button components', () => {
 	it('renders <a> vs <button>', () => {
